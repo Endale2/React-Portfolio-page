@@ -12,7 +12,7 @@ function LoginPage() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('/api/auth/login', { email, password });
+      const response = await axios.post('https://post-generator-backend-1.onrender.com/api/auth/login', { email, password });
       dispatch(loginSuccess(response.data.user));  // Assuming the backend returns the user data
       navigate('/home');
     } catch (error) {

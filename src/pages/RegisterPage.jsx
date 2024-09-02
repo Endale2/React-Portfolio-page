@@ -10,7 +10,7 @@ function RegisterPage() {
 
   const handleRegister = async () => {
     try {
-      await axios.post('/api/auth/register', { name, email, password });
+      await axios.post('https://post-generator-backend-1.onrender.com/api/auth/register', { name, email, password });
       navigate('/login');
     } catch (error) {
       console.error('Registration error', error);

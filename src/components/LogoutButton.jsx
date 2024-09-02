@@ -10,7 +10,7 @@ function LogoutButton() {
 
   const handleLogout = async () => {
     try {
-      await axios.post('/api/auth/logout');
+      await axios.post('https://post-generator-backend-1.onrender.com/api/auth/logout');
       dispatch(logoutSuccess());
       navigate('/login');
     } catch (error) {

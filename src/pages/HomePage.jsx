@@ -1,17 +1,23 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import LogoutButton from '../components/LogoutButton';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadUserData } from '../redux/authThunks';
 
-function HomePage() {
-  const { user } = useSelector((state) => state.auth);
+const HomePage = () => {
+  const dispatch = useDispatch();
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      dispatch(loadUserData()); // Fetch and load user data when component mounts
+    }
+  }, [dispatch, isAuthenticated]);
 
   return (
     <div>
-      <h1>Welcome, {user?.name || 'User'}</h1>
-      <p>Email: {user?.email}</p>
-      <LogoutButton />
+      <h1>Home Page</h1>
+      {isAuthenticated ? <p>Welcome, {user?.name}</p> : <p>Please log in</p>}
     </div>
   );
-}
+};
 
 export default HomePage;
